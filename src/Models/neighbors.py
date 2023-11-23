@@ -57,5 +57,5 @@ class KNN:
             prediction = max(set(labels), key=labels.count)
             y_pred.append(prediction)
         
-        return y_pred
+        return np.array(y_pred)
         
