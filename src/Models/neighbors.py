@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+import joblib
 
 class KNN:
     '''
@@ -9,16 +10,6 @@ class KNN:
     '''
     def __init__(self, k = 3):
         # Constructor
-        self.k = k
-
-    def euclidean_distance(self, row_1, row_2):
-        # Calculate euclidean distance between two rows
-        row_1 = row_1.astype(float)
-        row_2 = row_2.astype(float)
-        return np.sqrt(np.sum((row_1 - row_2) ** 2))
-    
-    def change_k(self, k):
-        # Change k number
         self.k = k
 
     def get_nearest_neighbours(self, test):
@@ -58,4 +49,6 @@ class KNN:
             y_pred.append(prediction)
         
         return np.array(y_pred)
-        
+    
+    def save(self, path):
+        joblib.dump(self, path)

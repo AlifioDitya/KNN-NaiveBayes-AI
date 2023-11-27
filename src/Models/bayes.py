@@ -1,6 +1,6 @@
 import numpy as np
 from collections import defaultdict
-
+import joblib
 
 class NaiveBayes:
     def __init__(self):
@@ -69,3 +69,7 @@ class NaiveBayes:
             predictions.append(predicted_class)
 
         return np.array(predictions)
+    
+    def save(self, path):
+        joblib.dump(self, path)
+    
