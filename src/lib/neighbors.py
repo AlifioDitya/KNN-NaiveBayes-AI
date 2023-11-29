@@ -57,6 +57,9 @@ class KNN:
     save(path)
         Save the model to the given path.
 
+    load(path)
+        Load a model from the given path.
+
     Examples
     --------
     >>> from src.lib.neighbors import KNN
@@ -137,7 +140,7 @@ class KNN:
         else:
             self.n_jobs = n_jobs
 
-    def get_nearest_neighbours(self, test):
+    def _get_nearest_neighbours(self, test):
         # Get nearest neighbours using Minkowski distance
         distances = np.linalg.norm(self.X_train - test, ord=self.p, axis=1)
         
@@ -168,7 +171,7 @@ class KNN:
         
     def _predict_instance(self, row):
         # Predict a single instance
-        indices, weights = self.get_nearest_neighbours(row)
+        indices, weights = self._get_nearest_neighbours(row)
         labels = [self.y_train.iloc[neighbour] for neighbour in indices]
         
         if self.weights == 'uniform':
