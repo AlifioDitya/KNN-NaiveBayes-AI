@@ -175,7 +175,7 @@ class KNN:
             prediction = max(set(labels), key=labels.count)
         elif self.weights == 'distance':
             weighted_labels = [weights[i] * labels[i] for i in range(len(labels))]
-            prediction = max(set(weighted_labels), key=weighted_labels.count)
+            prediction = max(set(weighted_labels), key=weighted_labels.count).astype(int)
         else:
             raise ValueError("Invalid weights. Valid values are 'uniform' and 'distance'.")
         
