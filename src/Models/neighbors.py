@@ -100,7 +100,10 @@ class KNN:
         start_time = time.time()
 
         with concurrent.futures.ProcessPoolExecutor(max_workers=self.n_jobs) as executor:
-            results = list(tqdm(executor.map(self._predict_instance, X_test), total=len(X_test)))
+            if self.verbose:
+                results = list(tqdm(executor.map(self._predict_instance, X_test), total=len(X_test)))
+            else:
+                results = list(executor.map(self._predict_instance, X_test))
 
         elapsed_time = time.time() - start_time
 
