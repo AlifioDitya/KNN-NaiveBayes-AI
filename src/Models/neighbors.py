@@ -100,9 +100,8 @@ class KNN:
             raise ValueError("Invalid p. p must be a number.")
         
         if weights is None:
-            weights = 'uniform'
-            
-        if weights not in ['uniform', 'distance']:
+            self.weights = 'uniform'
+        elif weights not in ['uniform', 'distance']:
             raise ValueError("Invalid weights. Valid values are 'uniform' and 'distance'.")
         
         if not isinstance(weights, str):
@@ -142,6 +141,7 @@ class KNN:
         # Get nearest neighbours using Minkowski distance
         distances = np.linalg.norm(self.X_train - test, ord=self.p, axis=1)
         
+        weights = None
         if self.weights == 'uniform':
             indices = np.argsort(distances)[:self.k]
         elif self.weights == 'distance':
