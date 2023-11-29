@@ -1,6 +1,6 @@
 import numpy as np
 from collections import defaultdict
-import joblib
+import pickle
 
 class NaiveBayes:
     def __init__(self):
@@ -71,5 +71,5 @@ class NaiveBayes:
         return np.array(predictions)
     
     def save(self, path):
-        joblib.dump(self, path)
+        pickle.dump(self, open(path, 'wb'))
     

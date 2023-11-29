@@ -1,6 +1,6 @@
 import numpy as np
 import pandas as pd
-import joblib
+import pickle
 import concurrent.futures
 from os import cpu_count
 from tqdm import tqdm
@@ -72,4 +72,4 @@ class KNN:
         return np.array(results)
     
     def save(self, path):
-        joblib.dump(self, path)
+        pickle.dump(self, open(path, 'wb'))
