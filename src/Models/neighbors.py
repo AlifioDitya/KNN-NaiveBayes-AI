@@ -210,3 +210,7 @@ class KNN:
     
     def save(self, path):
         pickle.dump(self, open(path, 'wb'))
+
+    @staticmethod
+    def load(path):
+        return pickle.load(open(path, 'rb'))
