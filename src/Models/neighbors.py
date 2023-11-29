@@ -78,7 +78,8 @@ class KNN:
     >>>
     >>> print(f"Accuracy: {accuracy_score(y_test, predictions)}")
     '''
-    def __init__(self, k=3, n_jobs=1, metric='minkowski', p=2, weights='uniform', verbose=True):
+    def __init__(self, k=5, n_jobs=1, metric='minkowski', p=2, weights='uniform', verbose=True):
+
         # Check for valid inputs
         if k < 1:
             raise ValueError("Invalid k. k must be greater than 0.")
@@ -98,6 +99,9 @@ class KNN:
         if not isinstance(p, int) and not isinstance(p, float):
             raise ValueError("Invalid p. p must be a number.")
         
+        if weights is None:
+            weights = 'uniform'
+            
         if weights not in ['uniform', 'distance']:
             raise ValueError("Invalid weights. Valid values are 'uniform' and 'distance'.")
         
